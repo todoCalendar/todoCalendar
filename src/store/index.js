@@ -47,9 +47,12 @@ export const todoDone = (id) => ({
 });
 export const deleteTodo = (id) => ({
     type: DELETE_TODO,
+    id,
 });
 export const deleteAll = (year, month) => ({
     type: DELETE_ALL,
+    year,
+    month,
 });
 
 // 마지막에 추가할 기능
@@ -65,7 +68,16 @@ export default function reducer(state = initialState, action) {
         case ADD_TODO:
         case TODO_DONE:
         case DELETE_TODO:
+            return {
+                todos: state.todos.filter((todo) => todo.id !== action.id),
+            };
         case DELETE_ALL:
+            return {
+                todos: state.todos.filter(
+                    (todo) =>
+                        todo.year === action.year && todo.month === action.month
+                ),
+            };
         case FILTER_TODO:
         default:
             return state;
