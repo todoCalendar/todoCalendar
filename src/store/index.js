@@ -1,6 +1,6 @@
 import { createStore } from "redux";
 
-// const TODOS = [{
+// const TODOS : [{
 //   id:1
 //   year:'',
 //   month:'',
