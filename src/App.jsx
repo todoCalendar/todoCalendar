@@ -1,11 +1,17 @@
+import Calendar from "./components/Calendar";
+import InputTodo from "./components/InputTodo";
+import TodayTodo from "./components/TodayTodo";
+import TodoList from "./components/TodoList";
 
 function App() {
-
     return (
         <>
-            Hello Vite-React!
+            <Calendar />
+            <TodayTodo />
+            <InputTodo />
+            <TodoList />
         </>
-    )
+    );
 }
 
-export default App
+export default App;
