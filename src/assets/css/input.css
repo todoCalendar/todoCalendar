@@ -1,0 +1,112 @@
+.input-todo {
+    padding: 25px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.view-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 요일별 글자색 */
+.sunday {
+    color: #f34848;
+}
+
+.saturday {
+    color: #316bff;
+}
+
+.weekday {
+    color: black;
+}
+
+.todaylist {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.todaylist li label {
+    margin-left: 7px;
+}
+.todaylist li label.checked {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.add-box {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+#inputText {
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: 0;
+    padding: 0 10px;
+}
+#inputText::placeholder {
+    color: #c5c5c5;
+    font-size: 16px;
+}
+.btn-box {
+    display: flex;
+    gap: 7px;
+    position: relative;
+}
+
+.btn {
+    width: 55px;
+    padding: 5px 10px 7px;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.add-btn {
+    background-color: #353535;
+}
+.repeat-btn {
+    background-color: #aaa;
+}
+
+.repeat-list {
+    width: 115px;
+    height: 190px;
+    position: absolute;
+    top: -5px;
+    transform: translateY(-100%);
+    right: 0;
+    padding: 10px 10px 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    background: url("../images/repeat-box.png") no-repeat center / cover;
+
+    display: none;
+}
+.repeat-list.show {
+    display: flex;
+}
+.repeat-list li {
+    width: 100%;
+}
+.repeat-list li button {
+    width: 100%;
+    background-color: #efefef;
+    color: #474747;
+    border-radius: 5px;
+    padding: 4px 0;
+    word-break: keep-all;
+    font-weight: 500;
+    font-size: 18px;
+}
+.repeat-list li button.active {
+    background-color: #ffce51;
+    color: #fff;
+}
