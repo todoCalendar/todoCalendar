@@ -1,0 +1,79 @@
+aside {
+    margin-top: 20px;
+    background-color: #fff6dd;
+    width: 340px;
+    border-radius: 20px;
+
+    .todo-header {
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #fff0c9;
+        height: 174px;
+    }
+    h3 {
+        margin: 30px 0 0 30px;
+        color: #c38d05;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .btn-group {
+        margin-top: 24px;
+    }
+    .delete-btn {
+        width: 50%;
+        height: 30px;
+        background-color: #ffce51;
+        color: #fff;
+    }
+    .delete-all-btn {
+        width: 50%;
+        height: 30px;
+        background-color: #f4b40f;
+        color: #fff;
+    }
+
+    .todo-list {
+        height: 700px;
+        padding: 30px 30px 30px 30px;
+
+        overflow: scroll;
+        scrollbar-color: #ffe49f #ffe49f;
+    }
+
+    time {
+        font-size: 22px;
+    }
+
+    .todo-li {
+        font-size: 18px;
+        margin-top: 12px;
+    }
+
+    input[type="checkbox"] {
+        appearance: none;
+        padding: 2px;
+        background-clip: content-box;
+
+        width: 15px;
+        height: 15px;
+        border: 1px solid #f4b40f;
+        background-color: #fff;
+
+        margin-right: 10px;
+
+        vertical-align: middle;
+    }
+    input[type="checkbox"]:checked {
+        background-color: #f4b40f;
+    }
+
+    .list-line {
+        margin: 20px 0;
+        width: 245px;
+        height: 1px;
+        background-color: #ffe49e;
+    }
+}
