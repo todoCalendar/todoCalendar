@@ -82,11 +82,10 @@
     top: -5px;
     transform: translateY(-100%);
     right: 0;
-    padding: 15px 10px 0 10px;
+    padding: 10px 10px 0 10px;
     display: flex;
     flex-direction: column;
     gap: 7px;
-    font-weight: 500;
     background: url("../images/repeat-box.png") no-repeat center / cover;
 
     display: none;
@@ -94,15 +93,20 @@
 .repeat-list.show {
     display: flex;
 }
-
 .repeat-list li {
+    width: 100%;
+}
+.repeat-list li button {
+    width: 100%;
     background-color: #efefef;
     color: #474747;
     border-radius: 5px;
-    padding: 7px 15px;
+    padding: 4px 0;
     word-break: keep-all;
+    font-weight: 500;
+    font-size: 18px;
 }
-.repeat-list li.active {
+.repeat-list li button.active {
     background-color: #ffce51;
     color: #fff;
 }

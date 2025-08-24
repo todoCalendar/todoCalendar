@@ -150,10 +150,18 @@ function InputTodo() {
                     <ul
                         className={`repeat-list ${showRepeatList ? "show" : ""}`}
                     >
-                        <li>매일마다</li>
-                        <li>매주마다</li>
-                        <li>매월마다</li>
-                        <li>매년마다</li>
+                        <li>
+                            <button type="button">매일마다</button>
+                        </li>
+                        <li>
+                            <button type="button">매주마다</button>
+                        </li>
+                        <li>
+                            <button type="button">매월마다</button>
+                        </li>
+                        <li>
+                            <button type="button">매년마다</button>
+                        </li>
                     </ul>
                 </div>
             </div>
