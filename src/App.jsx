@@ -1,15 +1,15 @@
-import Calendar from "./components/Calendar";
+// import Calendar from "./components/Calendar";
 import InputTodo from "./components/InputTodo";
-import TodayTodo from "./components/TodayTodo";
-import TodoList from "./components/TodoList";
+// import TodayTodo from "./components/TodayTodo";
+// import TodoList from "./components/TodoList";
 
 function App() {
     return (
         <>
-            <Calendar />
-            <TodayTodo />
+            {/* <Calendar /> */}
+            {/* <TodayTodo /> */}
             <InputTodo />
-            <TodoList />
+            {/* <TodoList /> */}
         </>
     );
 }
