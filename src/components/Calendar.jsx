@@ -1,11 +1,19 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import { useSelector } from "react-redux";
 
 export default function Calendar() {
+    const todos = useSelector((state) => state.todos);
+
+    const calendarEvents = todos.map((todo) => ({
+        title: todo.text,
+        start: `${todo.year}-${todo.month}-${todo.day}`,
+        id: todo.id,
+    }));
+
     const handleDateClick = (arg) => {
-        alert(arg.dateStr);
-        // 오늘의 할 일과 input 창 렌더
+        alert("Date clicked: " + arg.dateStr);
     };
 
     return (
@@ -25,20 +33,7 @@ export default function Calendar() {
                 right: "",
             }}
             dayHeaderFormat={{ weekday: "short" }}
-            events={[
-                {
-                    title: "청소하기",
-                    start: "2025-08-20",
-                },
-                {
-                    title: "설거지하기",
-                    start: "2025-08-20",
-                },
-                {
-                    title: "산책하기",
-                    start: "2025-08-22",
-                },
-            ]}
+            events={calendarEvents}
         />
     );
 }

@@ -1,24 +1,123 @@
 import { createStore } from "redux";
 
-// const TODOS : [{
-//   id:1
-//   year:'',
-//   month:'',
-//   day:'',
-//   isDone:false,
-//   cycle:{year:false, month:false, day:false},
-//   text:'',
-// },{
-//   id:2
-//   year:'',
-//   month:'',
-//   day:'',
-//   isDone:false,
-//   cycle:{year:false, month:false, day:false},
-//   text:'',
-// }]
+export const dummy = [
+    {
+        id: 1,
+        year: "2025",
+        month: "08",
+        day: "01",
+        isDone: false,
+        cycle: { year: false, month: false, day: false },
+        text: "청소하기",
+    },
+    {
+        id: 2,
+        year: "2025",
+        month: "08",
+        day: "01",
+        isDone: false,
+        cycle: { year: false, month: false, day: false },
+        text: "빨래하기",
+    },
+    {
+        id: 3,
+        year: "2025",
+        month: "08",
+        day: "02",
+        isDone: false,
+        cycle: { year: false, month: false, day: false },
+        text: "밥하기",
+    },
+    {
+        id: 4,
+        year: "2025",
+        month: "08",
+        day: "03",
+        isDone: false,
+        cycle: { year: false, month: false, day: false },
+        text: "청소하기",
+    },
+    {
+        id: 5,
+        year: "2025",
+        month: "08",
+        day: "04",
+        isDone: false,
+        cycle: { year: false, month: false, day: false },
+        text: "빨래하기",
+    },
+    {
+        id: 6,
+        year: "2025",
+        month: "08",
+        day: "05",
+        isDone: false,
+        cycle: { year: false, month: false, day: false },
+        text: "밥하기",
+    },
+    {
+        id: 7,
+        year: "2025",
+        month: "08",
+        day: "06",
+        isDone: false,
+        cycle: { year: false, month: false, day: false },
+        text: "청소하기",
+    },
+    {
+        id: 8,
+        year: "2025",
+        month: "08",
+        day: "07",
+        isDone: false,
+        cycle: { year: false, month: false, day: false },
+        text: "빨래하기",
+    },
+    {
+        id: 9,
+        year: "2025",
+        month: "08",
+        day: "08",
+        isDone: false,
+        cycle: { year: false, month: false, day: false },
+        text: "밥하기",
+    },
+    {
+        id: 10,
+        year: "2025",
+        month: "08",
+        day: "09",
+        isDone: false,
+        cycle: { year: false, month: false, day: false },
+        text: "청소하기",
+    },
+    {
+        id: 11,
+        year: "2025",
+        month: "08",
+        day: "10",
+        isDone: false,
+        cycle: { year: false, month: false, day: false },
+        text: "빨래하기",
+    },
+    {
+        id: 12,
+        year: "2025",
+        month: "08",
+        day: "11",
+        isDone: false,
+        cycle: { year: false, month: false, day: false },
+        text: "밥하기",
+    },
+];
 
-const initialState = { todos: [], selectedDate: "" };
+const initialState = {
+    todos: dummy,
+    selectedDate: "",
+    // filter:,
+    activeFilter: [],
+    filteredTodos: dummy,
+};
 
 // 액션 타입 상수
 export const SELECT_TODAY_TODO = "SELECT_TODAY_TODO";
@@ -67,9 +166,9 @@ export const deleteAll = (year, month) => ({
     month,
 });
 
-// 마지막에 추가할 기능
-export const filterTodo = () => ({
+export const filterTodo = (text) => ({
     type: FILTER_TODO,
+    text,
 });
 
 // 리듀서
@@ -100,16 +199,41 @@ export default function reducer(state = initialState, action) {
             };
         case DELETE_TODO:
             return {
+                ...state,
                 todos: state.todos.filter((todo) => todo.id !== action.id),
             };
         case DELETE_ALL:
             return {
+                ...state,
                 todos: state.todos.filter(
                     (todo) =>
                         todo.year === action.year && todo.month === action.month
                 ),
             };
         case FILTER_TODO:
+            // action.text
+            // 필터 값 모음 TOGGLE로 설정해주기
+            const filterOptions = [];
+            const filteredList = [];
+
+            if (state.activeFilters.includes(action.text)) {
+                state.activity.filter((f) => f !== action.text);
+            } else {
+                [...state.activityFilters, action.text];
+            }
+
+            // 만약 todos.text랑 action.text랑 같다면 filteredList로
+            if (newFilters.length === 0) {
+                filteredList = state.todos;
+            } else {
+                state.todos.filter((todo) => newFilters.includes(todo.text));
+            }
+
+            return {
+                ...state,
+                activeFilter: filterOptions,
+                filteredTodos: filteredList,
+            };
         default:
             return state;
     }

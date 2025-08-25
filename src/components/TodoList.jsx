@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteAll, deleteTodo } from "../store/index.js";
 import styles from "../assets/css/todo-list.module.css";
+import { FilteredTodoList } from "./FilteredTodoList";
 
 const TodoList = () => {
     const [selectedIds, setSelectedIds] = useState(new Set());
@@ -158,7 +159,7 @@ const TodoList = () => {
             <div className={styles["todo-header"]}>
                 <h3>TO DO LIST</h3>
                 <div className={styles["btn-group"]}>
-                    {/*필터 컴포넌트 추가되는 영역*/}
+                    <FilteredTodoList />
                     <button
                         className={styles["delete-btn"]}
                         onClick={handleDeleteSelected}
