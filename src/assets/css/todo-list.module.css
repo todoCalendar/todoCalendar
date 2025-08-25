@@ -42,6 +42,9 @@ aside {
         overflow: scroll;
         scrollbar-color: #ffe49f #ffe49f;
     }
+    .done {
+        text-decoration-line: line-through;
+    }
 
     time {
         font-size: 22px;
