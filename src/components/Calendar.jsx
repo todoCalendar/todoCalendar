@@ -34,6 +34,7 @@ export default function Calendar() {
             }}
             dayHeaderFormat={{ weekday: "short" }}
             events={calendarEvents}
+            dayMaxEvents={true} // 하루 칸의 크기에 따라 동적으로 할 일 개수를 조절해주는 설정
         />
     );
 }
