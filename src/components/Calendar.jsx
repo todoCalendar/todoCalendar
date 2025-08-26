@@ -1,19 +1,22 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { selectDate } from "../store";
 
 export default function Calendar() {
     const todos = useSelector((state) => state.filteredTodos);
+    const dispatch = useDispatch();
 
     const calendarEvents = todos.map((todo) => ({
         title: todo.text,
         start: `${todo.year}-${todo.month}-${todo.day}`,
         id: todo.id,
+        className: todo.isDone ? "done" : "",
     }));
 
     const handleDateClick = (arg) => {
-        alert("Date clicked: " + arg.dateStr);
+        dispatch(selectDate(arg.dateStr));
     };
 
     return (
