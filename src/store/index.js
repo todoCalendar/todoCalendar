@@ -213,22 +213,27 @@ export default function reducer(state = initialState, action) {
                 ),
             };
         case FILTER_TODO:
-            // action.text
             // 필터 값 모음 TOGGLE로 설정해주기
-            const filterOptions = [];
-            const filteredList = [];
+            let filterOptions = [];
+            let filteredList = [];
 
-            if (state.activeFilters.includes(action.text)) {
-                state.activity.filter((f) => f !== action.text);
+            if (state.activeFilter.includes(action.text)) {
+                filterOptions = state.activeFilter.filter(
+                    (f) => f !== action.text
+                );
             } else {
-                [...state.activityFilters, action.text];
+                filterOptions = [...state.activeFilter, action.text];
             }
 
+            console.log(filterOptions);
+
             // 만약 todos.text랑 action.text랑 같다면 filteredList로
-            if (newFilters.length === 0) {
+            if (filterOptions.length === 0) {
                 filteredList = state.todos;
             } else {
-                state.todos.filter((todo) => newFilters.includes(todo.text));
+                filteredList = state.todos.filter((todo) =>
+                    filterOptions.includes(todo.text)
+                );
             }
 
             return {
