@@ -59,12 +59,52 @@
 }
 #calendar-container table {
     border-radius: 10px;
+    border: none;
+    border-collapse: separate;
+}
+#calendar-container th {
+    border-right: none;
+    border-bottom: none;
+}
+#calendar-container .fc-daygrid-day {
+    border-right: none;
+    border-bottom: none;
+}
+#calendar-container .fc-col-header-cell:last-child {
+    border-right: 1px solid #ddd;
+}
+
+#calendar-container thead tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+}
+#calendar-container thead tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+}
+
+#calendar-container tbody tr:last-child > td:first-child {
+    border-bottom-left-radius: 10px;
+}
+#calendar-container tbody tr:last-child > td:last-child {
+    border-bottom-right-radius: 10px;
 }
 
 #calendar-container thead {
     height: 47.94px;
     background-color: var(--bg-color);
-    vertical-align: middle;
+    border-radius: 10px;
+}
+
+#calendar-container thead .fc-scrollgrid-sync-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+#calendar-container .fc-day:first-child {
+    color: #f34848;
+}
+#calendar-container .fc-day:last-child {
+    color: #316bff;
 }
 
 /* 할 일 컴포넌트 스타일링 */
