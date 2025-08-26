@@ -1,3 +1,13 @@
+:root {
+    --main-color: #ffce51;
+    --sub1-color: #f4b40f;
+    --sub2-color: #ffe49f;
+    --mainText-color: #333;
+    --subText-color: #9c7000;
+    --line-color: #c5c5c5;
+    --btn-color: #aaa;
+    --bg-color: #f0f0f0;
+}
 .sr-only {
     position: absolute;
     width: 1px;
@@ -8,4 +18,15 @@
     clip: rect(0, 0, 0, 0); /* 구형 브라우저를 위해 사용 */
     clip-path: polygon(0 0, 0 0, 0 0); /* inset(50%) 와 동일한 표현 */
     border: 0;
+}
+
+/* 취소선 */
+.done {
+    text-decoration: line-through;
+    border: 1px solid var(--mainText-color);
+}
+
+/* 캘린더 이벤트의 텍스트에 취소선을 적용하기 위한 별도 규칙 */
+.done .fc-event-title {
+    text-decoration: line-through;
 }

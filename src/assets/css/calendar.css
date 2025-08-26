@@ -1,0 +1,67 @@
+@import url("./common.css");
+
+* {
+    color: var(--mainText-color);
+}
+
+/* 달력 크기 */
+#calendar-container {
+    margin-top: 52px;
+    margin-left: 58.82px;
+    width: 1445.35px;
+}
+
+/* 헤더 스타일링 */
+#calendar-container .fc-header-toolbar {
+    height: 75px;
+    border-radius: 10px;
+
+    background-color: var(--bg-color);
+}
+#calendar-container .fc-toolbar-chunk {
+    display: flex;
+    align-items: center;
+}
+
+/* 헤더 버튼 스타일링 */
+#calendar-container .fc-button {
+    border: 0;
+}
+#calendar-container .fc-today-button {
+    border-radius: 5px;
+}
+
+#calendar-container .fc-button-primary {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 5px;
+    margin-right: 5px;
+    padding: 0;
+    color: var(--mainText-color);
+    background-color: transparent;
+}
+
+/* 달력 스타일링 */
+#calendar-container .fc-view-harness {
+    background-size: 752px 404.86px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("../images/LOGO.svg");
+}
+#calendar-container table {
+    border-radius: 10px;
+}
+
+/* 할 일 컴포넌트 스타일링 */
+#calendar-container .fc-event {
+    background-color: transparent;
+    border: 0;
+}
+#calendar-container .fc-h-event .fc-event-main {
+    color: black;
+    display: flex;
+}
+#calendar-container .fc-h-event .fc-event-main::before {
+    content: "•";
+}

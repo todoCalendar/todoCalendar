@@ -14,14 +14,8 @@ function InputTodo() {
     const todos = useSelector((state) => state.todos);
     const selectedDate = useSelector((state) => state.selectedDate);
 
-    // **임시로 selectedDate를 설정합니다.**
-    // 다른 팀원이 달력 기능을 완성하면 이 부분은 제거하고
-    // `useSelector`로 가져온 selectedDate를 사용하면 됩니다.
-    const tempSelectedDate = "2025-08-02";
-
     // 날짜 문자열에서 일(day)을 추출
-    // const day = selectedDate ? selectedDate.split("-")[2] : "";
-    const day = tempSelectedDate ? tempSelectedDate.split("-")[2] : "";
+    const day = selectedDate ? selectedDate.split("-")[2] : "";
 
     // 요일 이름을 추출하는 함수
     const getDayName = (dateString) => {
@@ -39,9 +33,9 @@ function InputTodo() {
         return days[date.getDay()];
     };
 
-    const dayName = getDayName(tempSelectedDate);
+    const dayName = getDayName(selectedDate);
 
-    const date = new Date(tempSelectedDate);
+    const date = new Date(selectedDate);
     const dayIndex = date.getDay(); // 요일 인덱스 (0:일, 1:월, ..., 6:토)
 
     // 요일 인덱스에 따라 다른 클래스 이름을 반환하는 함수
@@ -73,8 +67,7 @@ function InputTodo() {
         }
 
         // addTodo 액션 생성자를 사용해 dispatch 함
-        // dispatch(addTodo(text, selectedDate));
-        dispatch(addTodo(text, tempSelectedDate));
+        dispatch(addTodo(text, selectedDate));
         setText("");
     };
 
@@ -82,11 +75,18 @@ function InputTodo() {
         dispatch(todoDone(id));
     };
 
-    //  selectedDate를 사용해 할 일을 필터링
-    // const filteredTodos = todos.filter((todo) => todo.date === selectedDate);
-    const filteredTodos = todos.filter(
-        (todo) => todo.date === tempSelectedDate
-    );
+    // selectedDate를 사용해 할 일을 필터링
+    const filteredTodos = selectedDate
+        ? todos.filter((todo) => {
+              // 새로 추가된 todo는 'date' 속성을 가짐
+              if (todo.date) {
+                  return todo.date === selectedDate;
+              }
+              // index.js의 dummy 데이터는 year, month, day 속성을 가짐
+              const todoDate = `${todo.year}-${todo.month}-${todo.day}`;
+              return todoDate === selectedDate;
+          })
+        : []; // 날짜가 선택되지 않았을 때는 빈 배열을 반환
 
     // 반복 버튼 클릭 시 핸들러 함수
     const handleRepeatClick = () => {
@@ -98,7 +98,7 @@ function InputTodo() {
             <div className="view-box">
                 <strong className={dayClass}>
                     {day
-                        ? `${parseInt(day)}일 ${dayName}`
+                        ? `${parseInt(day, 10)}일 ${dayName}`
                         : "날짜를 선택해 주세요"}
                 </strong>
                 <ul className="todaylist">
@@ -112,7 +112,7 @@ function InputTodo() {
                             />
                             <label
                                 htmlFor={`todolist-${todo.id}`}
-                                className={todo.isDone ? "checked" : ""}
+                                className={todo.isDone ? "done" : ""}
                             >
                                 {todo.text}
                             </label>
