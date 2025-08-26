@@ -200,6 +200,9 @@ export default function reducer(state = initialState, action) {
         case DELETE_TODO:
             return {
                 ...state,
+                filteredTodos: state.todos.filter(
+                    (todo) => !action.selectedIds.has(todo.id)
+                ),
                 todos: state.todos.filter(
                     (todo) => !action.selectedIds.has(todo.id)
                 ),
@@ -207,6 +210,10 @@ export default function reducer(state = initialState, action) {
         case DELETE_ALL:
             return {
                 ...state,
+                filteredTodos: state.todos.filter(
+                    (todo) =>
+                        todo.year !== action.year && todo.month !== action.month
+                ),
                 todos: state.todos.filter(
                     (todo) =>
                         todo.year !== action.year && todo.month !== action.month
