@@ -92,7 +92,11 @@ const TodoList = () => {
                                                     )}
                                                 />
                                                 <label
-                                                    className={`${data.isDone ? styles["done"] : ""}`}
+                                                    className={
+                                                        data.isDone
+                                                            ? "done"
+                                                            : ""
+                                                    }
                                                     htmlFor={`checkbox${data.id}`}
                                                 >
                                                     {data.text}

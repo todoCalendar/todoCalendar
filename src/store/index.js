@@ -189,13 +189,22 @@ export default function reducer(state = initialState, action) {
                 todos: [...state.todos, action.payload],
             };
         case TODO_DONE:
+            // isDone 상태가 토글된 새로운 todos 배열 생성
+            const newTodos = state.todos.map((todo) =>
+                todo.id === action.payload
+                    ? { ...todo, isDone: !todo.isDone }
+                    : todo
+            );
+            // filterTodo 배열도 동일하게 업데이트
+            const newFilteredTodos = state.filteredTodos.map((todo) =>
+                todo.id === action.payload
+                    ? { ...todo, isDone: !todo.isDone }
+                    : todo
+            );
             return {
                 ...state,
-                todos: state.todos.map((todo) =>
-                    todo.id === action.payload
-                        ? { ...todo, isDone: !todo.isDone }
-                        : todo
-                ),
+                todos: newTodos,
+                filteredTodos: newFilteredTodos, // filteredTodos도 업데이트하도록 추가
             };
         case DELETE_TODO:
             return {
