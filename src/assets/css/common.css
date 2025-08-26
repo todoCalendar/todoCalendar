@@ -9,3 +9,14 @@
     clip-path: polygon(0 0, 0 0, 0 0); /* inset(50%) 와 동일한 표현 */
     border: 0;
 }
+
+/* 취소선 */
+.done {
+    text-decoration: line-through;
+    border: 1px solid var(--mainText-color);
+}
+
+/* 캘린더 이벤트의 텍스트에 취소선을 적용하기 위한 별도 규칙 */
+.done .fc-event-title {
+    text-decoration: line-through;
+}
