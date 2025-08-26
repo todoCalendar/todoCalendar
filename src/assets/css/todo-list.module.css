@@ -2,10 +2,10 @@ aside {
     margin-top: 20px;
     background-color: #fff6dd;
     width: 340px;
-    border-radius: 20px;
+    border-radius: 10px;
 
     .todo-header {
-        border-radius: 20px;
+        border-radius: 10px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -63,7 +63,7 @@ aside {
         width: 15px;
         height: 15px;
         border: 1px solid #f4b40f;
-        background-color: #fff;
+        background-color: #fff6dd;
 
         margin-right: 10px;
 
