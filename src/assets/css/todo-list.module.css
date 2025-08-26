@@ -39,8 +39,8 @@ aside {
         height: 700px;
         padding: 30px 30px 30px 30px;
 
-        overflow: scroll;
-        scrollbar-color: #ffe49f #ffe49f;
+        overflow-y: scroll;
+        scrollbar-color: #ffe49f #fff6dd;
     }
     .done {
         text-decoration-line: line-through;
