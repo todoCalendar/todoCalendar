@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteAll, deleteTodo } from "../store/index.js";
 import styles from "../assets/css/todo-list.module.css";
 import { FilteredTodoList } from "./FilteredTodoList";
@@ -8,130 +8,22 @@ const TodoList = () => {
     const [selectedIds, setSelectedIds] = useState(new Set());
 
     const dispatch = useDispatch();
-
-    const dummy = [
-        {
-            id: 1,
-            year: "2025",
-            month: "08",
-            day: "01",
-            isDone: false,
-            cycle: { year: false, month: false, day: false },
-            text: "청소하기",
-        },
-        {
-            id: 2,
-            year: "2025",
-            month: "08",
-            day: "01",
-            isDone: false,
-            cycle: { year: false, month: false, day: false },
-            text: "빨래하기",
-        },
-        {
-            id: 3,
-            year: "2025",
-            month: "08",
-            day: "02",
-            isDone: false,
-            cycle: { year: false, month: false, day: false },
-            text: "밥하기",
-        },
-        {
-            id: 4,
-            year: "2025",
-            month: "08",
-            day: "03",
-            isDone: false,
-            cycle: { year: false, month: false, day: false },
-            text: "청소하기",
-        },
-        {
-            id: 5,
-            year: "2025",
-            month: "08",
-            day: "04",
-            isDone: false,
-            cycle: { year: false, month: false, day: false },
-            text: "빨래하기",
-        },
-        {
-            id: 6,
-            year: "2025",
-            month: "08",
-            day: "05",
-            isDone: false,
-            cycle: { year: false, month: false, day: false },
-            text: "밥하기",
-        },
-        {
-            id: 7,
-            year: "2025",
-            month: "08",
-            day: "06",
-            isDone: false,
-            cycle: { year: false, month: false, day: false },
-            text: "청소하기",
-        },
-        {
-            id: 8,
-            year: "2025",
-            month: "08",
-            day: "07",
-            isDone: false,
-            cycle: { year: false, month: false, day: false },
-            text: "빨래하기",
-        },
-        {
-            id: 9,
-            year: "2025",
-            month: "08",
-            day: "08",
-            isDone: false,
-            cycle: { year: false, month: false, day: false },
-            text: "밥하기",
-        },
-        {
-            id: 10,
-            year: "2025",
-            month: "08",
-            day: "09",
-            isDone: false,
-            cycle: { year: false, month: false, day: false },
-            text: "청소하기",
-        },
-        {
-            id: 11,
-            year: "2025",
-            month: "08",
-            day: "10",
-            isDone: false,
-            cycle: { year: false, month: false, day: false },
-            text: "빨래하기",
-        },
-        {
-            id: 12,
-            year: "2025",
-            month: "08",
-            day: "11",
-            isDone: false,
-            cycle: { year: false, month: false, day: false },
-            text: "밥하기",
-        },
-    ];
+    const dummy = useSelector((state) => state.todos);
 
     const groupedDummy = Object.groupBy(dummy, ({ day }) => day);
 
     function handleDeleteSelected() {
-        //TODO: 스토어 조회기능 개발완료시 작업
-        const id = 1;
-        dispatch(deleteTodo(id));
+        if (!confirm("선택하신 일정을 모두 삭제하시겠습니까?")) return;
+        dispatch(deleteTodo(selectedIds));
         setSelectedIds(new Set());
     }
     function handleDeleteAll() {
-        //TODO: 스토어 조회기능 개발완료시 작업
-        const year = "2025";
-        const month = "08";
+        if (dummy.length === 0) return;
+
+        if (!confirm("전체 일정을 삭제하시겠습니까?")) return;
+
+        const year = dummy[0].year;
+        const month = dummy[0].month;
         dispatch(deleteAll(year, month));
         setSelectedIds(new Set());
     }
@@ -150,28 +42,26 @@ const TodoList = () => {
         });
     }
 
-    useEffect(() => {
-        console.log("selectedIds", selectedIds);
-    }, [selectedIds]);
-
     return (
         <aside>
             <div className={styles["todo-header"]}>
                 <h3>TO DO LIST</h3>
                 <div className={styles["btn-group"]}>
                     <FilteredTodoList />
-                    <button
-                        className={styles["delete-btn"]}
-                        onClick={handleDeleteSelected}
-                    >
-                        선택삭제
-                    </button>
-                    <button
-                        className={styles["delete-all-btn"]}
-                        onClick={handleDeleteAll}
-                    >
-                        전체삭제
-                    </button>
+                    <div>
+                        <button
+                            className={styles["delete-btn"]}
+                            onClick={handleDeleteSelected}
+                        >
+                            선택삭제
+                        </button>
+                        <button
+                            className={styles["delete-all-btn"]}
+                            onClick={handleDeleteAll}
+                        >
+                            전체삭제
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -202,6 +92,7 @@ const TodoList = () => {
                                                     )}
                                                 />
                                                 <label
+                                                    className={`${data.isDone ? styles["done"] : ""}`}
                                                     htmlFor={`checkbox${data.id}`}
                                                 >
                                                     {data.text}

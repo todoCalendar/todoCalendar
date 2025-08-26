@@ -6,7 +6,7 @@ export const dummy = [
         year: "2025",
         month: "08",
         day: "01",
-        isDone: false,
+        isDone: true,
         cycle: { year: false, month: false, day: false },
         text: "청소하기",
     },
@@ -15,7 +15,7 @@ export const dummy = [
         year: "2025",
         month: "08",
         day: "01",
-        isDone: false,
+        isDone: true,
         cycle: { year: false, month: false, day: false },
         text: "빨래하기",
     },
@@ -24,7 +24,7 @@ export const dummy = [
         year: "2025",
         month: "08",
         day: "02",
-        isDone: false,
+        isDone: true,
         cycle: { year: false, month: false, day: false },
         text: "밥하기",
     },
@@ -156,9 +156,9 @@ export const todoDone = (id) => ({
     type: TODO_DONE,
     payload: id,
 });
-export const deleteTodo = (id) => ({
+export const deleteTodo = (selectedIds) => ({
     type: DELETE_TODO,
-    id,
+    selectedIds,
 });
 export const deleteAll = (year, month) => ({
     type: DELETE_ALL,
@@ -200,14 +200,16 @@ export default function reducer(state = initialState, action) {
         case DELETE_TODO:
             return {
                 ...state,
-                todos: state.todos.filter((todo) => todo.id !== action.id),
+                todos: state.todos.filter(
+                    (todo) => !action.selectedIds.has(todo.id)
+                ),
             };
         case DELETE_ALL:
             return {
                 ...state,
                 todos: state.todos.filter(
                     (todo) =>
-                        todo.year === action.year && todo.month === action.month
+                        todo.year !== action.year && todo.month !== action.month
                 ),
             };
         case FILTER_TODO:
