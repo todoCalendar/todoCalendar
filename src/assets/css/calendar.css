@@ -1,9 +1,5 @@
 @import url("./common.css");
 
-* {
-    color: var(--mainText-color);
-}
-
 /* 달력 크기 */
 #calendar-container {
     margin-top: 52px;
@@ -23,6 +19,14 @@
     align-items: center;
 }
 
+#calendar-container .fc-toolbar-title {
+    font-size: 40px;
+    color: var(--mainText-color);
+}
+#calendar-container .fc-header-toolbar > * > :nth-child(2) {
+    margin: 0px 56px;
+}
+
 /* 헤더 버튼 스타일링 */
 #calendar-container .fc-button {
     border: 0;
@@ -30,15 +34,19 @@
 #calendar-container .fc-today-button {
     border-radius: 5px;
 }
+#calendar-container .fc-icon::before {
+    font-weight: bold;
+}
 
 #calendar-container .fc-button-primary {
     width: 30px;
     height: 30px;
 
+    border: 0;
     border-radius: 5px;
     margin-right: 5px;
     padding: 0;
-    color: var(--mainText-color);
+    color: var(--btn-color);
     background-color: transparent;
 }
 
@@ -53,13 +61,19 @@
     border-radius: 10px;
 }
 
+#calendar-container thead {
+    height: 47.94px;
+    background-color: var(--bg-color);
+    vertical-align: middle;
+}
+
 /* 할 일 컴포넌트 스타일링 */
 #calendar-container .fc-event {
     background-color: transparent;
     border: 0;
 }
 #calendar-container .fc-h-event .fc-event-main {
-    color: black;
+    color: var(--mainText-color);
     display: flex;
 }
 #calendar-container .fc-h-event .fc-event-main::before {
