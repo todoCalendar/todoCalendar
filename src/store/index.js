@@ -109,6 +109,33 @@ export const dummy = [
         cycle: { year: false, month: false, day: false },
         text: "밥하기",
     },
+    {
+        id: 13,
+        year: "2025",
+        month: "08",
+        day: "01",
+        isDone: true,
+        cycle: { year: false, month: false, day: false },
+        text: "청소하기",
+    },
+    {
+        id: 14,
+        year: "2025",
+        month: "08",
+        day: "01",
+        isDone: true,
+        cycle: { year: false, month: false, day: false },
+        text: "청소하기",
+    },
+    {
+        id: 15,
+        year: "2025",
+        month: "08",
+        day: "01",
+        isDone: true,
+        cycle: { year: false, month: false, day: false },
+        text: "청소하기",
+    },
 ];
 
 const initialState = {
