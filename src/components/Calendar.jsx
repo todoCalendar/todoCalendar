@@ -3,6 +3,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useSelector, useDispatch } from "react-redux";
 import { selectDate } from "../store";
+import "../assets/css/calendar.css";
 
 export default function Calendar() {
     const todos = useSelector((state) => state.filteredTodos);
@@ -24,20 +25,21 @@ export default function Calendar() {
             <FullCalendar
                 plugins={[dayGridPlugin, interactionPlugin]}
                 dateClick={handleDateClick}
+                events={calendarEvents}
                 selectable={true}
+                height={792.93}
                 locale="ko"
                 dayCellContent={(arg) => {
                     // 날짜에서 '일' 글자를 제거하고 숫자만 반환
                     return arg.dayNumberText.replace("일", "");
                 }}
-                titleFormat={{ month: "long" }}
+                // titleFormat={{ month: "long" }}
                 headerToolbar={{
-                    left: "title,prev,next",
-                    center: "",
+                    left: "",
+                    center: "prev title next",
                     right: "",
                 }}
                 dayHeaderFormat={{ weekday: "short" }}
-                events={calendarEvents}
                 dayMaxEvents={true} // 하루 칸의 크기에 따라 동적으로 할 일 개수를 조절해주는 설정
             />
         </div>
