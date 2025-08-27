@@ -1,0 +1,40 @@
+.filter-btn-group {
+    margin: 0 26px 24px 30px;
+    width: 280px;
+    height: 71px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.btn-more {
+    display: none;
+}
+
+.filter-btn,
+.btn-more {
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* 버튼 내 글자 넘침 방지 */
+
+    height: 31px;
+    margin: 0 4px 9px 0;
+    font-size: 14px;
+    color: var(--subText-color);
+    padding: 8px;
+    border-radius: 5px;
+
+    background-color: var(--bg-yellow-color);
+    border: 1px solid var(--main-color);
+}
+
+.filter-btn:hover {
+    background-color: var(--subText-color);
+    color: var(--bg-yellow-color);
+}
+/* 필터 목록에 있는 애한테 css active (action에 추가 필요) */
+.filter-btn .active {
+    background-color: var(--main-color);
+}
