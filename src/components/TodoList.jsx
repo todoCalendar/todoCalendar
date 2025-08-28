@@ -45,23 +45,23 @@ const TodoList = () => {
     return (
         <aside>
             <div className={styles["todo-header"]}>
-                <h3>TO DO LIST</h3>
-                <div className={styles["btn-group"]}>
+                <div className={styles["list-group"]}>
+                    <h3>TO DO LIST</h3>
                     <FilteredTodoList />
-                    <div>
-                        <button
-                            className={styles["delete-btn"]}
-                            onClick={handleDeleteSelected}
-                        >
-                            선택삭제
-                        </button>
-                        <button
-                            className={styles["delete-all-btn"]}
-                            onClick={handleDeleteAll}
-                        >
-                            전체삭제
-                        </button>
-                    </div>
+                </div>
+                <div className={styles["btn-group"]}>
+                    <button
+                        className={styles["delete-btn"]}
+                        onClick={handleDeleteSelected}
+                    >
+                        선택삭제
+                    </button>
+                    <button
+                        className={styles["delete-all-btn"]}
+                        onClick={handleDeleteAll}
+                    >
+                        전체삭제
+                    </button>
                 </div>
             </div>
 

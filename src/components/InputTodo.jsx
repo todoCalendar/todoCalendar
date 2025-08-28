@@ -58,6 +58,11 @@ function InputTodo() {
 
     //  추가 버튼 클릭시 실행될 함수
     const handleAddTodo = () => {
+        if (!selectedDate) {
+            alert("날짜를 선택해 주세요.");
+            return; // 함수 실행을 중단
+        }
+
         if (text.trim() === "") {
             alert("할 일을 입력해주세요.");
             return;

@@ -34,8 +34,16 @@
 }
 
 #root {
+    height: 100vh;
+    display: flex;
+    gap: 20px;
+    padding: 50px;
+}
+
+.main-content {
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 50px;
+    flex: 1;
 }
