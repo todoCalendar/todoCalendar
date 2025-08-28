@@ -107,7 +107,7 @@ export const dummy = [
         day: "11",
         isDone: false,
         cycle: { year: false, month: false, day: false },
-        text: "밥하기",
+        text: "가나다라",
     },
     {
         id: 13,
@@ -116,7 +116,7 @@ export const dummy = [
         day: "01",
         isDone: true,
         cycle: { year: false, month: false, day: false },
-        text: "청소하기",
+        text: "마바사",
     },
     {
         id: 14,
@@ -125,7 +125,7 @@ export const dummy = [
         day: "01",
         isDone: true,
         cycle: { year: false, month: false, day: false },
-        text: "청소하기",
+        text: "아자차",
     },
     {
         id: 15,
@@ -134,7 +134,25 @@ export const dummy = [
         day: "01",
         isDone: true,
         cycle: { year: false, month: false, day: false },
-        text: "청소하기",
+        text: "타가파하",
+    },
+    {
+        id: 16,
+        year: "2025",
+        month: "08",
+        day: "01",
+        isDone: true,
+        cycle: { year: false, month: false, day: false },
+        text: "타가파",
+    },
+    {
+        id: 17,
+        year: "2025",
+        month: "08",
+        day: "01",
+        isDone: true,
+        cycle: { year: false, month: false, day: false },
+        text: "아자",
     },
 ];
 
