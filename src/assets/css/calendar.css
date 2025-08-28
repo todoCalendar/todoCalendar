@@ -1,13 +1,9 @@
 @import url("./common.css");
 
-* {
-    color: var(--mainText-color);
-}
-
 /* 달력 크기 */
 #calendar-container {
-    margin-top: 52px;
-    margin-left: 58.82px;
+    margin-top: 57px;
+    margin-left: 59px;
     width: 1445.35px;
 }
 
@@ -23,6 +19,14 @@
     align-items: center;
 }
 
+#calendar-container .fc-toolbar-title {
+    font-size: 40px;
+    color: var(--mainText-color);
+}
+#calendar-container .fc-header-toolbar > * > :nth-child(2) {
+    margin: 0px 56px;
+}
+
 /* 헤더 버튼 스타일링 */
 #calendar-container .fc-button {
     border: 0;
@@ -30,15 +34,19 @@
 #calendar-container .fc-today-button {
     border-radius: 5px;
 }
+#calendar-container .fc-icon::before {
+    font-weight: bold;
+}
 
 #calendar-container .fc-button-primary {
     width: 30px;
     height: 30px;
 
+    border: 0;
     border-radius: 5px;
     margin-right: 5px;
     padding: 0;
-    color: var(--mainText-color);
+    color: var(--btn-color);
     background-color: transparent;
 }
 
@@ -49,18 +57,91 @@
     background-repeat: no-repeat;
     background-image: url("../images/LOGO.svg");
 }
+
 #calendar-container table {
     border-radius: 10px;
+    border: none;
+    border-collapse: separate;
+}
+#calendar-container th {
+    border-right: none;
+    border-bottom: none;
+}
+#calendar-container .fc-daygrid-day {
+    border-right: none;
+    border-bottom: none;
+}
+#calendar-container .fc-col-header-cell:last-child {
+    border-right: 1px solid #ddd;
+}
+
+#calendar-container thead tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+}
+#calendar-container thead tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+}
+
+#calendar-container tbody tr:last-child > td:first-child {
+    border-bottom-left-radius: 10px;
+}
+#calendar-container tbody tr:last-child > td:last-child {
+    border-bottom-right-radius: 10px;
+}
+#calendar-container table,
+#calendar-container td,
+#calendar-container th {
+    border-color: var(--line-color);
+}
+
+#calendar-container thead {
+    height: 47.94px;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+}
+
+#calendar-container thead .fc-scrollgrid-sync-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+#calendar-container .fc-day:first-child {
+    color: #f34848;
+}
+#calendar-container .fc-day:last-child {
+    color: #316bff;
 }
 
 /* 할 일 컴포넌트 스타일링 */
 #calendar-container .fc-event {
+    pointer-events: none;
     background-color: transparent;
     border: 0;
 }
+#calendar-container .fc-daygrid-event-harness {
+    margin-top: 5px;
+}
+#calendar-container .fc-daygrid-day-number {
+    font-size: 20px;
+    padding: 15px 16px 0 0;
+}
+
+#calendar-container .fc-daygrid-day-bottom a {
+    font-size: 18px;
+    color: dimgray;
+    margin-left: 20px;
+    padding: 0;
+    /* 디자인 필요 */
+    /* '...더보기'로 출력 구현 */
+}
+
 #calendar-container .fc-h-event .fc-event-main {
-    color: black;
+    color: var(--mainText-color);
     display: flex;
+    margin-left: 20px;
+    gap: 12px;
+    font-size: 18px;
 }
 #calendar-container .fc-h-event .fc-event-main::before {
     content: "•";
