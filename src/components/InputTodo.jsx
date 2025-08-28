@@ -14,9 +14,6 @@ function InputTodo() {
     const todos = useSelector((state) => state.todos);
     const selectedDate = useSelector((state) => state.selectedDate);
 
-    // 날짜 문자열에서 일(day)을 추출
-    const day = selectedDate ? selectedDate.split("-")[2] : "";
-
     // 요일 이름을 추출하는 함수
     const getDayName = (dateString) => {
         if (!dateString) return "";
@@ -61,6 +58,11 @@ function InputTodo() {
 
     //  추가 버튼 클릭시 실행될 함수
     const handleAddTodo = () => {
+        if (!selectedDate) {
+            alert("날짜를 선택해 주세요.");
+            return; // 함수 실행을 중단
+        }
+
         if (text.trim() === "") {
             alert("할 일을 입력해주세요.");
             return;
@@ -97,8 +99,8 @@ function InputTodo() {
         <div className="input-todo">
             <div className="view-box">
                 <strong className={dayClass}>
-                    {day
-                        ? `${parseInt(day, 10)}일 ${dayName}`
+                    {selectedDate
+                        ? `${selectedDate} ${dayName}`
                         : "날짜를 선택해 주세요"}
                 </strong>
                 <ul className="todaylist">

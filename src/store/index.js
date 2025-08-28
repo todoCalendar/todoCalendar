@@ -107,7 +107,7 @@ export const dummy = [
         day: "11",
         isDone: false,
         cycle: { year: false, month: false, day: false },
-        text: "밥하기",
+        text: "가나다라",
     },
     {
         id: 13,
@@ -116,7 +116,7 @@ export const dummy = [
         day: "01",
         isDone: true,
         cycle: { year: false, month: false, day: false },
-        text: "청소하기",
+        text: "마바사",
     },
     {
         id: 14,
@@ -125,7 +125,7 @@ export const dummy = [
         day: "01",
         isDone: true,
         cycle: { year: false, month: false, day: false },
-        text: "청소하기",
+        text: "아자차",
     },
     {
         id: 15,
@@ -134,7 +134,25 @@ export const dummy = [
         day: "01",
         isDone: true,
         cycle: { year: false, month: false, day: false },
-        text: "청소하기",
+        text: "타가파하",
+    },
+    {
+        id: 16,
+        year: "2025",
+        month: "08",
+        day: "01",
+        isDone: true,
+        cycle: { year: false, month: false, day: false },
+        text: "타가파",
+    },
+    {
+        id: 17,
+        year: "2025",
+        month: "08",
+        day: "01",
+        isDone: true,
+        cycle: { year: false, month: false, day: false },
+        text: "아자",
     },
 ];
 
@@ -170,15 +188,21 @@ export const selectMonthTodo = (year, month) => ({
     type: SELECT_MONTH_TODO,
 });
 //MONTHLY TODO LIST
-export const addTodo = (todo, date) => ({
-    type: ADD_TODO,
-    payload: {
-        id: Date.now(), // 고유 ID 생성
-        isDone: false, // 할 일의 완료 여부
-        text: todo, // InputTodo에서 전달받은 내용
-        date: date, // 선택된 날짜 정보 추가
-    },
-});
+export const addTodo = (todo, date) => {
+    const [year, month, day] = date.split("-");
+    return {
+        type: ADD_TODO,
+        payload: {
+            id: Date.now(), // 고유 ID 생성
+            year: year,
+            month: month,
+            day: day,
+            isDone: false,
+            cycle: { year: false, month: false, day: false },
+            text: todo,
+        },
+    };
+};
 export const todoDone = (id) => ({
     type: TODO_DONE,
     payload: id,
@@ -214,6 +238,7 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 todos: [...state.todos, action.payload],
+                filteredTodos: [...state.filteredTodos, action.payload],
             };
         case TODO_DONE:
             // isDone 상태가 토글된 새로운 todos 배열 생성

@@ -1,0 +1,89 @@
+.filter-btn-wrapper {
+    position: relative;
+}
+.filter-btn-group {
+    margin: 0 26px 24px 30px;
+    width: 280px;
+    height: 71px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+/* 드롭다운 메뉴 컨테이너 */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 18px); /* 버튼 그룹 바로 아래 + 꼬리 공간(12px) */
+    right: 31px; /* 오른쪽에 붙이기 */
+
+    /* 디자인 */
+    background-color: #ffffff;
+    border: 1px solid var(--main-color);
+    border-radius: 5px;
+    padding: 10px 10px 4px 10px;
+    z-index: 10;
+
+    /* 내부 버튼 정렬 */
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* 버튼 사이 간격 */
+}
+
+/* 드롭다운 메뉴 안의 버튼 스타일 (기존 filter-btn 재사용) */
+.dropdown-menu .filter-btn {
+    width: 100%;
+}
+
+/* 꼬리의 테두리 부분 (뒤에 위치) */
+.dropdown-menu::before {
+    content: "";
+    position: absolute;
+    top: -12px; /* 드롭다운 메뉴 상단에서 테두리 두께만큼 위로 */
+    right: 10px; /* '...' 버튼 근처 오른쪽 위치 */
+
+    /* 삼각형 모양 만들기 */
+    border-top: 0px solid transparent;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 11px solid var(--main-color); /* 테두리 색상 */
+}
+
+/* 꼬리의 흰색 내용물 부분 (앞에 위치) */
+.dropdown-menu::after {
+    content: "";
+    position: absolute;
+    top: -9px; /* 드롭다운 메뉴 상단에서 위로 */
+    right: 11px; /* 테두리 안쪽에 보이도록 미세 조정 */
+
+    /* 삼각형 모양 만들기 */
+    border-top: 0px solid transparent;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 10px solid #ffffff; /* 메뉴 배경과 같은 흰색 */
+}
+
+.filter-btn,
+.btn-more {
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* 버튼 내 글자 넘침 방지 */
+
+    height: 31px;
+    margin: 0 4px 9px 0;
+    font-size: 14px;
+    color: var(--subText-color);
+    padding: 8px;
+    border-radius: 5px;
+
+    background-color: var(--bg-yellow-color);
+    border: 1px solid var(--main-color);
+}
+
+.filter-btn:hover {
+    cursor: pointer;
+}
+.active {
+    background-color: var(--main-color);
+}
