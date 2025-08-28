@@ -2,9 +2,9 @@
 
 /* 달력 크기 */
 #calendar-container {
-    margin-top: 57px;
-    margin-left: 59px;
-    width: 1445.35px;
+    /* margin-top: 57px;
+    margin-left: 59px; */
+    width: 100%;
 }
 
 /* 헤더 스타일링 */
@@ -128,12 +128,13 @@
 }
 
 #calendar-container .fc-daygrid-day-bottom a {
-    font-size: 18px;
-    color: dimgray;
-    margin-left: 20px;
-    padding: 0;
-    /* 디자인 필요 */
-    /* '...더보기'로 출력 구현 */
+    font-size: 14px;
+    color: #fff;
+    margin-left: 35px;
+    margin-top: 3px;
+    padding: 3px 10px;
+    border-radius: 50px;
+    background-color: var(--main-color);
 }
 
 #calendar-container .fc-h-event .fc-event-main {
