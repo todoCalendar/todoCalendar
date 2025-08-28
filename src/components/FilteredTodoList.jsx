@@ -12,13 +12,13 @@ import styles from "../assets/css/filter-btns.module.css";
 export function FilteredTodoList() {
     const dispatch = useDispatch();
     const todos = useSelector((state) => state.todos);
+    const activeFilter = useSelector((state) => state.activeFilter);
 
     const filters = useMemo(() => {
         const filterSet = new Set(todos.map((todo) => todo.text));
         return Array.from(filterSet);
     }, [todos]);
 
-    // 초기값은 filters.length로 유지하여 첫 렌더링 시 모든 버튼을 DOM에 그려 측정을 준비합니다.
     const [visibleCount, setVisibleCount] = useState(filters.length);
     const containerRef = useRef(null);
     const buttonRefs = useRef([]); // 일반 필터 버튼 ref
@@ -93,12 +93,15 @@ export function FilteredTodoList() {
                     <button
                         key={i}
                         ref={(el) => (buttonRefs.current[i] = el)}
-                        className={styles["filter-btn"]}
-                        onClick={() => dispatch(filterTodo(filter))}
+                        className={`${activeFilter.includes(filter) ? styles.active : ""} ${styles["filter-btn"]}`}
+                        onClick={() => {
+                            dispatch(filterTodo(filter));
+                        }}
                     >
                         {filter}
                     </button>
                 ))}
+
                 {showMoreButton && (
                     <button
                         className={styles["btn-more"]}
@@ -114,11 +117,8 @@ export function FilteredTodoList() {
                     {filters.slice(visibleCount).map((filter, i) => (
                         <button
                             key={i}
-                            className={styles["filter-btn"]}
-                            onClick={() => {
-                                dispatch(filterTodo(filter));
-                                setIsExpanded(false);
-                            }}
+                            className={`${activeFilter.includes(filter) ? styles.active : ""} ${styles["filter-btn"]}`}
+                            onClick={() => dispatch(filterTodo(filter))}
                         >
                             {filter}
                         </button>
