@@ -126,11 +126,14 @@
     font-size: 20px;
     padding: 15px 16px 0 0;
 }
+.fc-event-title {
+    font-size: 14px;
+}
 
 #calendar-container .fc-daygrid-day-bottom a {
     font-size: 14px;
     color: #fff;
-    margin-left: 35px;
+    margin-left: 20px;
     margin-top: 3px;
     padding: 3px 10px;
     border-radius: 50px;
@@ -140,9 +143,14 @@
 #calendar-container .fc-h-event .fc-event-main {
     color: var(--mainText-color);
     display: flex;
-    margin-left: 20px;
-    gap: 12px;
+    margin-left: 10px;
+    gap: 5px;
     font-size: 18px;
+
+    /* 넘치는 텍스트 정리 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 #calendar-container .fc-h-event .fc-event-main::before {
     content: "•";

@@ -220,6 +220,7 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 todos: [...state.todos, action.payload],
+                filteredTodos: [...state.filteredTodos, action.payload],
             };
         case TODO_DONE:
             // isDone 상태가 토글된 새로운 todos 배열 생성
