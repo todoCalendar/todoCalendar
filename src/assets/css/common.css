@@ -24,6 +24,7 @@
 .done {
     text-decoration: line-through;
     text-decoration-color: var(--mainText-color);
+    /* border: 1px solid var(--mainText-color); */
 }
 
 /* 캘린더 이벤트의 텍스트에 취소선을 적용하기 위한 별도 규칙 */
