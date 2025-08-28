@@ -170,15 +170,21 @@ export const selectMonthTodo = (year, month) => ({
     type: SELECT_MONTH_TODO,
 });
 //MONTHLY TODO LIST
-export const addTodo = (todo, date) => ({
-    type: ADD_TODO,
-    payload: {
-        id: Date.now(), // 고유 ID 생성
-        isDone: false, // 할 일의 완료 여부
-        text: todo, // InputTodo에서 전달받은 내용
-        date: date, // 선택된 날짜 정보 추가
-    },
-});
+export const addTodo = (todo, date) => {
+    const [year, month, day] = date.split("-");
+    return {
+        type: ADD_TODO,
+        payload: {
+            id: Date.now(), // 고유 ID 생성
+            year: year,
+            month: month,
+            day: day,
+            isDone: false,
+            cycle: { year: false, month: false, day: false },
+            text: todo,
+        },
+    };
+};
 export const todoDone = (id) => ({
     type: TODO_DONE,
     payload: id,
