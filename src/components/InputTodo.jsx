@@ -5,7 +5,6 @@ import { addTodo, todoDone } from "../store";
 function InputTodo() {
     // 입력 값을 저장할 state 생성
     const [text, setText] = useState("");
-    const [showRepeatList, setShowRepeatList] = useState(false);
 
     // dispatch 함수 가져오기
     const dispatch = useDispatch();
@@ -90,11 +89,6 @@ function InputTodo() {
           })
         : []; // 날짜가 선택되지 않았을 때는 빈 배열을 반환
 
-    // 반복 버튼 클릭 시 핸들러 함수
-    const handleRepeatClick = () => {
-        setShowRepeatList(!showRepeatList);
-    };
-
     return (
         <div className="input-todo">
             <div className="view-box">
@@ -142,29 +136,6 @@ function InputTodo() {
                     >
                         추가
                     </button>
-                    <button
-                        type="button"
-                        className="repeat-btn btn"
-                        onClick={handleRepeatClick}
-                    >
-                        반복
-                    </button>
-                    <ul
-                        className={`repeat-list ${showRepeatList ? "show" : ""}`}
-                    >
-                        <li>
-                            <button type="button">매일마다</button>
-                        </li>
-                        <li>
-                            <button type="button">매주마다</button>
-                        </li>
-                        <li>
-                            <button type="button">매월마다</button>
-                        </li>
-                        <li>
-                            <button type="button">매년마다</button>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>

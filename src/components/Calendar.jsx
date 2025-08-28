@@ -17,6 +17,7 @@ export default function Calendar() {
     }));
 
     const handleDateClick = (arg) => {
+        console.log(arg);
         dispatch(selectDate(arg.dateStr));
     };
 
@@ -27,6 +28,20 @@ export default function Calendar() {
                 dateClick={handleDateClick}
                 events={calendarEvents}
                 selectable={true}
+                select={(start, end, allDay) => {
+                    // if (end.getTime() != start.getTime()) {
+                    //     calendar.fullCalendar("unselect");
+                    // }
+                    console.log(
+                        "start:",
+                        start,
+                        "end:",
+                        end,
+                        "allDay:",
+                        allDay
+                    );
+                }}
+                height={"100%"}
                 locale="ko"
                 dayCellContent={(arg) => {
                     // 날짜에서 '일' 글자를 제거하고 숫자만 반환
