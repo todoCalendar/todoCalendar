@@ -2,8 +2,8 @@
 
 /* 달력 크기 */
 #calendar-container {
-    margin-top: 52px;
-    margin-left: 58.82px;
+    margin-top: 57px;
+    margin-left: 59px;
     width: 1445.35px;
 }
 
@@ -57,6 +57,7 @@
     background-repeat: no-repeat;
     background-image: url("../images/LOGO.svg");
 }
+
 #calendar-container table {
     border-radius: 10px;
     border: none;
@@ -87,6 +88,11 @@
 #calendar-container tbody tr:last-child > td:last-child {
     border-bottom-right-radius: 10px;
 }
+#calendar-container table,
+#calendar-container td,
+#calendar-container th {
+    border-color: var(--line-color);
+}
 
 #calendar-container thead {
     height: 47.94px;
@@ -109,12 +115,33 @@
 
 /* 할 일 컴포넌트 스타일링 */
 #calendar-container .fc-event {
+    pointer-events: none;
     background-color: transparent;
     border: 0;
 }
+#calendar-container .fc-daygrid-event-harness {
+    margin-top: 5px;
+}
+#calendar-container .fc-daygrid-day-number {
+    font-size: 20px;
+    padding: 15px 16px 0 0;
+}
+
+#calendar-container .fc-daygrid-day-bottom a {
+    font-size: 18px;
+    color: dimgray;
+    margin-left: 20px;
+    padding: 0;
+    /* 디자인 필요 */
+    /* '...더보기'로 출력 구현 */
+}
+
 #calendar-container .fc-h-event .fc-event-main {
     color: var(--mainText-color);
     display: flex;
+    margin-left: 20px;
+    gap: 12px;
+    font-size: 18px;
 }
 #calendar-container .fc-h-event .fc-event-main::before {
     content: "•";

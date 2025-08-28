@@ -27,7 +27,7 @@ export default function Calendar() {
                 dateClick={handleDateClick}
                 events={calendarEvents}
                 selectable={true}
-                height={792.93}
+                height={787.93}
                 locale="ko"
                 dayCellContent={(arg) => {
                     // 날짜에서 '일' 글자를 제거하고 숫자만 반환
