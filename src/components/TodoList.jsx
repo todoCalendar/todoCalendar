@@ -13,12 +13,16 @@ const TodoList = () => {
     const groupedDummy = Object.groupBy(dummy, ({ day }) => day);
 
     function handleDeleteSelected() {
-        if (!confirm("선택하신 일정을 모두 삭제하시겠습니까?")) return;
+        if (
+            selectedIds.size !== 0 &&
+            !confirm("선택하신 일정을 모두 삭제하시겠습니까?")
+        )
+            return;
         dispatch(deleteTodo(selectedIds));
         setSelectedIds(new Set());
     }
     function handleDeleteAll() {
-        if (dummy.length === 0) return;
+        if (selectedIds.size === 0) return;
 
         if (!confirm("전체 일정을 삭제하시겠습니까?")) return;
 
