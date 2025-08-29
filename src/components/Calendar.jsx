@@ -2,28 +2,39 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useSelector, useDispatch } from "react-redux";
-import { selectDate } from "../store";
+import { selectDate, setCurrentMonth } from "../store";
 import "../assets/css/calendar.css";
+import { useEffect, useRef } from "react";
 
 export default function Calendar() {
     const todos = useSelector((state) => state.filteredTodos);
     const dispatch = useDispatch();
 
-    const calendarEvents = todos.map((todo) => ({
-        title: todo.text,
-        start: `${todo.year}-${todo.month}-${todo.day}`,
-        id: todo.id,
-        className: todo.isDone ? "done" : "",
-    }));
+    const calendarEvents = todos.map((todo) => {
+        // console.log("todo", todo);
+        return {
+            title: todo.text,
+            start: `${todo.year}-${todo.month}-${todo.day}`,
+            id: todo.id,
+            className: todo.isDone ? "done" : "",
+        };
+    });
 
     const handleDateClick = (arg) => {
         console.log(arg);
         dispatch(selectDate(arg.dateStr));
     };
 
+    const handleDatesSet = (info) => {
+        const month =
+            new Date(info.view.calendar.currentData.currentDate).getMonth() + 1;
+        dispatch(setCurrentMonth(month));
+    };
+
     return (
         <div id="calendar-container">
             <FullCalendar
+                datesSet={handleDatesSet}
                 plugins={[dayGridPlugin, interactionPlugin]}
                 dateClick={handleDateClick}
                 events={calendarEvents}
