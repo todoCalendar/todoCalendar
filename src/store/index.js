@@ -157,6 +157,7 @@ export const dummy = [
 ];
 
 const initialState = {
+    currentMonth: null,
     todos: dummy,
     selectedDate: "",
     // filter:,
@@ -173,6 +174,7 @@ export const DELETE_TODO = "DELETE_TODO";
 export const DELETE_ALL = "DELETE_ALL";
 export const FILTER_TODO = "FILTER_TODO";
 export const SELECT_DATE = "SELECT_DATE";
+export const SET_CURRENT_MONTH = "SET_CURRENT_MONTH";
 
 // 액션 생성자
 export const selectDate = (date) => ({
@@ -216,10 +218,13 @@ export const deleteAll = (year, month) => ({
     year,
     month,
 });
-
 export const filterTodo = (text) => ({
     type: FILTER_TODO,
     text,
+});
+export const setCurrentMonth = (month) => ({
+    type: SET_CURRENT_MONTH,
+    month,
 });
 
 // 리듀서
@@ -273,11 +278,17 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 filteredTodos: state.todos.filter(
                     (todo) =>
-                        todo.year !== action.year && todo.month !== action.month
+                        !(
+                            todo.year === action.year &&
+                            todo.month === action.month
+                        )
                 ),
                 todos: state.todos.filter(
                     (todo) =>
-                        todo.year !== action.year && todo.month !== action.month
+                        !(
+                            todo.year === action.year &&
+                            todo.month === action.month
+                        )
                 ),
             };
         case FILTER_TODO:
@@ -309,6 +320,8 @@ export default function reducer(state = initialState, action) {
                 activeFilter: filterOptions,
                 filteredTodos: filteredList,
             };
+        case SET_CURRENT_MONTH:
+            return { ...state, currentMonth: action.month };
         default:
             return state;
     }

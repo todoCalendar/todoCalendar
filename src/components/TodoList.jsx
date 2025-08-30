@@ -9,21 +9,28 @@ const TodoList = () => {
 
     const dispatch = useDispatch();
     const dummy = useSelector((state) => state.todos);
+    const currentMonth = useSelector((state) => state.currentMonth);
+    const currentData = dummy.filter(
+        (data) => Number(data.month) === currentMonth
+    );
 
-    const groupedDummy = Object.groupBy(dummy, ({ day }) => day);
+    const groupedData = Object.groupBy(currentData, ({ day }) => day);
 
     function handleDeleteSelected() {
-        if (!confirm("선택하신 일정을 모두 삭제하시겠습니까?")) return;
+        if (
+            selectedIds.size !== 0 &&
+            !confirm("선택하신 일정을 모두 삭제하시겠습니까?")
+        )
+            return;
         dispatch(deleteTodo(selectedIds));
         setSelectedIds(new Set());
     }
     function handleDeleteAll() {
-        if (dummy.length === 0) return;
-
         if (!confirm("전체 일정을 삭제하시겠습니까?")) return;
 
-        const year = dummy[0].year;
-        const month = dummy[0].month;
+        const year = currentData[0].year;
+        const month = currentData[0].month;
+        console.log("deleteAll year month", year, month);
         dispatch(deleteAll(year, month));
         setSelectedIds(new Set());
     }
@@ -66,7 +73,7 @@ const TodoList = () => {
             </div>
 
             <ul className={styles["todo-list"]}>
-                {Object.values(groupedDummy)
+                {Object.values(groupedData)
                     .sort((a, b) => a[0].day.localeCompare(b[0].day))
                     .map((dataList, index) => {
                         return (
